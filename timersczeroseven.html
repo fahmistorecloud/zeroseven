@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Countdown Zero-Seven</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #000000, #1a1a1a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    .box {
+        padding: 30px 40px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    }
+
+    h1 {
+        margin-bottom: 10px;
+        font-size: 26px;
+        letter-spacing: 2px;
+    }
+
+    p {
+        margin-bottom: 25px;
+        color: #aaa;
+    }
+
+    .timer {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .time {
+        background: #000;
+        padding: 15px;
+        border-radius: 10px;
+        min-width: 70px;
+        box-shadow: 0 0 10px cyan;
+    }
+
+    .time span {
+        display: block;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .label {
+        font-size: 12px;
+        color: #0ff;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h1>SC BUG ZERO-SEVEN</h1>
+    <p>Akan segera tayang dalam</p>
+
+    <div class="timer">
+        <div class="time">
+            <span id="days">3</span>
+            <div class="label">Hari</div>
+        </div>
+        <div class="time">
+            <span id="hours">00</span>
+            <div class="label">Jam</div>
+        </div>
+        <div class="time">
+            <span id="minutes">00</span>
+            <div class="label">Menit</div>
+        </div>
+        <div class="time">
+            <span id="seconds">00</span>
+            <div class="label">Detik</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 3 hari = 72 jam
+    let countdownTime = 3 * 24 * 60 * 60;
+
+    function updateTimer() {
+        let days = Math.floor(countdownTime / (24 * 60 * 60));
+        let hours = Math.floor((countdownTime % (24 * 60 * 60)) / (60 * 60));
+        let minutes = Math.floor((countdownTime % (60 * 60)) / 60);
+        let seconds = countdownTime % 60;
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
+
+        if (countdownTime > 0) {
+            countdownTime--;
+        } else {
+            document.querySelector(".box").innerHTML = 
+                "<h1>🔥 SC BUG ZERO-SEVEN 🔥</h1><p>SUDAH TAYANG!</p>";
+        }
+    }
+
+    setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
